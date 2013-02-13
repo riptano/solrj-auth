@@ -1,14 +1,14 @@
 SolrJ-Auth for DSE Search
 ================
 
-Handles initializing Solr with custom helpers to support Kerberos authentication & SSL encryption. These helpers must set before Solr creates any HTTPClient objects, so one of the init methods should be called as early as possible in the application initialization. Additionally, once Solr has been initialized, subsequent calls to any init method will have no effect.
+Handles initializing Solr with custom helpers to support Kerberos authentication & SSL encryption. These helpers must be setup before Solr creates any HTTPClient objects, so the ```initXXX``` methods should be called as early as possible during application initialization. Additionally, once Solr has been initialized, subsequent calls to either ```initXXX``` method will have no effect.
 
 This library must be used with the DSE specific SolrJ component. Both jars are shipped as part of the DSE distro, and the SolrJ library should be used as a drop in replacement for the regular Apache library in client applications which want to access secured DSE search services using SolrJ.
 
 Options for configuring Kerberos authentication via SPNEGO
 =====================================
 
-Use the AuthenticationInitializer class to configure SolrJ with a SpnegoAuthenticator, a plugin which is used internally by every instance of HttpSolrServer. It performs authentication using SPNEGO/GSSAPI/Kerberos and additionally caches authentication tokens on a per-host basis. Optionally, all HTTP requests performed as part of the SPNEGO protocol can be carried out using secure connections if an SSLContext is supplied. To use the Kerberos credentials a keytab file, both the file and the Principal must be supplied. If neither is supplied, then credentials from the local Kerberos ticket cache will be used. Supplying either a keytab or Principal, but not both is not supported and will result in an error.
+Use the SolrHttpClientInitializer class to configure SolrJ with a SpnegoAuthenticator, a plugin which is used internally by every instance of HttpSolrServer. It performs authentication using SPNEGO/GSSAPI/Kerberos and additionally caches authentication tokens on a per-host basis. Optionally, all HTTP requests performed as part of the SPNEGO protocol can be carried out using secure connections if an SSLContext is supplied. To use the Kerberos credentials a keytab file, both the file and the Principal must be supplied. If neither is supplied, then credentials from the local Kerberos ticket cache will be used. Supplying either a keytab or Principal, but not both is not supported and will result in an error.
 
 Enable Kerberos authentication using credentials from local ticket cache
 -----------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ SolrHttpClientInitializer.initAuthentication(
                 .withKeytab(new File("/path/to/keytab")));
 ```
  
-Enable Kerberos authentication using credentials from local ticket cache 
+Enable Kerberos authentication using credentials from local ticket cache and SSL encryption
 ------------------------------------------------------------------------------------------------------------
 HTTP requests during the SPNEGO protocol negotiation will be encrypted 
 and use a specific X509HostnameVerifier - the very lax version supplied 

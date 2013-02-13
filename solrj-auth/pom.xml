@@ -52,8 +52,6 @@
     <dependency>
       <groupId>org.apache.solr</groupId>
       <artifactId>solr-solrj</artifactId>
-      <version>4.0-DSP-1349-SNAPSHOT</version>
-      <scope>provided</scope>
     </dependency>
     
     <dependency>

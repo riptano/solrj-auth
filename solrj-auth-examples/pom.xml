@@ -17,7 +17,6 @@
      <dependency>
       <artifactId>solr-solrj</artifactId>
       <groupId>org.apache.solr</groupId>
-      <version>4.0-DSP-1349-SNAPSHOT</version>
      </dependency>
      
      <dependency>

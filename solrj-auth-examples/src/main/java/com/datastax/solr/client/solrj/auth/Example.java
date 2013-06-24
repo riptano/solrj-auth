@@ -46,19 +46,25 @@ public class Example
         String truststorePassword = args[4];
         String keystorePath = args[5];
         String keystorePassword = args[6];
-                
-        SSLContext context = getSSLContext(truststorePath, truststorePassword, keystorePath, keystorePassword);
-        SolrHttpClientInitializer.initAuthentication(
-                    new AuthenticationOptions()
-                        .withPrincipal(new KerberosPrincipal(kerberosPrincipal))
-                        .withKeytab(new File(keytabPath))
-                        .withSSLContext(context)
-                        .withHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER));
-        SolrHttpClientInitializer.initEncryption(
-                    new EncryptionOptions()
-                        .withSSLContext(context)
-                        .withHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER));
-        
+
+        AuthenticationOptions options = new AuthenticationOptions()
+                                                .withPrincipal(new KerberosPrincipal(kerberosPrincipal))
+                                                .withKeytab(new File(keytabPath));
+
+        if (truststorePassword != null)
+        {
+            SSLContext context = getSSLContext(truststorePath, truststorePassword, keystorePath, keystorePassword);
+            options.withHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
+                   .withSSLContext(context);
+
+            SolrHttpClientInitializer.initEncryption(
+                        new EncryptionOptions()
+                            .withSSLContext(context)
+                            .withHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER));
+        }
+
+        SolrHttpClientInitializer.initAuthentication(options);
+
         SolrServer server = new HttpSolrServer(url);
         
         SolrInputDocument doc1 = new SolrInputDocument();

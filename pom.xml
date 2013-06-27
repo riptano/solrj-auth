@@ -3,7 +3,7 @@
   <groupId>com.datastax</groupId>
   <artifactId>solrj-auth-parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.1</version>
+  <version>1.1-SNAPSHOT</version>
   <name>solrj-auth-parent</name>
   <url>http://www.datastax.com</url>
   <description>Authentication implementation for SolJ clients using DataStax Enterprise Search</description>

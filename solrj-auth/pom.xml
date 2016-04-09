@@ -14,51 +14,51 @@
   <url>http://www.datastax.com</url>
   <description>Authentication implementation for SolJ clients using DataStax Enterprise Search</description>
   <inceptionYear>2013</inceptionYear>
-  
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
+
   <scm>
     <connection>scm:git:git@github.com:riptano/solrj-auth.git</connection>
     <url>https://github.com/riptano/solrj-auth</url>
   </scm>
-  
+
   <distributionManagement>
     <repository>
       <id>datastax-release</id>
-      <url>http://mvn.riptano.com/content/repositories/releases</url>
+      <url>http://datastax.artifactoryonline.com/datastax/datastax-releases-local</url>
     </repository>
     <snapshotRepository>
       <id>datastax-snapshot</id>
-      <url>http://mvn.riptano.com/content/repositories/snapshots</url>
+      <url>http://datastax.artifactoryonline.com/datastax/datastax-snapshots-local</url>
     </snapshotRepository>
   </distributionManagement>
-    
+
   <repositories>
     <repository>
       <id>datastax-release</id>
-      <url>http://mvn.riptano.com/content/repositories/releases</url>
+      <url>https://datastax.artifactoryonline.com/datastax/dse</url>
     </repository>
     <repository>
       <id>datastax-snapshot</id>
-      <url>http://mvn.riptano.com/content/repositories/snapshots</url>
+      <url>https://datastax.artifactoryonline.com/datastax/dse</url>
     </repository>
   </repositories>
-  
+
   <dependencies>
-  
+
     <dependency>
       <groupId>org.apache.solr</groupId>
       <artifactId>solr-solrj</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.cloudera.alfredo</groupId>
       <artifactId>alfredo</artifactId>
-      <version>0.1.7.2</version>
+      <version>0.1.7.3</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
@@ -70,26 +70,26 @@
       <artifactId>slf4j-api</artifactId>
       <version>1.7.2</version>
     </dependency>
-    
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.7</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
       <version>3.1</version>
       <scope>test</scope>
     </dependency>
-  
+
   </dependencies>
 
   <build>
-  
-    <plugins>    
+
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
